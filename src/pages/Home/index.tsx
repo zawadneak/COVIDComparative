@@ -24,12 +24,12 @@ const App: React.FC = () => {
     setLastUpdate(format(formatted, 'dd/MM'));
   };
 
-  const setValues = (deaths: number) => {
-    const { labels: labelsAux, deaths: deathsAux, list } = SortArray(deaths);
+  const setValues = (covidCasualties: number) => {
+    const { labels: labelsAux, deaths: deathsAux, list } = SortArray(
+      covidCasualties,
+    );
 
     setList(list);
-    labelsAux.push('COVID-19');
-    deathsAux.push(covidDeaths);
 
     setLabels(labelsAux);
     setDeaths(deathsAux);
@@ -38,7 +38,7 @@ const App: React.FC = () => {
     const backgroundAux = [];
     while (i < labelsAux.length - 1) {
       backgroundAux.push('rgba(201, 69, 30, 0.2)');
-      i++;
+      i += 1;
     }
     backgroundAux.push('rgba(156, 36, 0, 0.8)');
     setBackground(backgroundAux);
@@ -74,7 +74,7 @@ const App: React.FC = () => {
           alt="COVID-19 Comparative"
         />
         <strong>{`Last updated: ${lastUpdate}`}</strong>
-        <Bar data={data} width={1200} height={600} />
+        <Bar data={data} width={1200} height={800} />
         <p>
           It's not just another flu.
           <br />
@@ -87,7 +87,7 @@ const App: React.FC = () => {
           {disasterList.map((item) => (
             <a href={item.source}>
               <div>
-                <text>{`${item.name} - † ${item.deaths}`}</text>
+                <text>{`${item.name} - ${item.formattedDeaths} †`}</text>
               </div>
             </a>
           ))}

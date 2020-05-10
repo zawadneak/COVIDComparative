@@ -8,7 +8,7 @@ export const Container = styled.div`
 export const Holder = styled.div`
   padding-top: 60px;
   align-self: center;
-  max-width: 1200px;
+  max-width: 900px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -24,6 +24,7 @@ export const Holder = styled.div`
   }
 
   > strong {
+    margin-top: 50px;
     opacity: 0.5;
     text-align: center;
   }

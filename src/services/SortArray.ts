@@ -6,7 +6,8 @@ type ArrayProps = Array<DataProps>;
 export interface DataProps {
   name: string;
   deaths: number;
-  source: string;
+  formattedDeaths?: string;
+  source?: string;
 }
 
 const SortArray = (deaths: number) => {
@@ -25,6 +26,9 @@ const SortArray = (deaths: number) => {
       }
       return -1;
     });
+    while (array.length > 8) {
+      array.shift();
+    }
     return array;
   });
   list.forEach((item) => {
@@ -32,8 +36,15 @@ const SortArray = (deaths: number) => {
     deathAux.push(item.deaths);
   });
 
+  const sortedList = data.sort((a, b) => {
+    if (a.deaths >= b.deaths) {
+      return 1;
+    }
+    return -1;
+  });
+
   return {
-    list,
+    list: sortedList,
     labels: labelAux,
     deaths: deathAux,
   };
