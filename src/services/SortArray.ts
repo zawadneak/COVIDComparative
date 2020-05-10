@@ -3,7 +3,7 @@ import data from '../data/deathsAPI';
 
 type ArrayProps = Array<DataProps>;
 
-interface DataProps {
+export interface DataProps {
   name: string;
   deaths: number;
   source: string;
@@ -33,6 +33,7 @@ const SortArray = (deaths: number) => {
   });
 
   return {
+    list,
     labels: labelAux,
     deaths: deathAux,
   };

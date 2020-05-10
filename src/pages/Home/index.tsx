@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 
 import { Bar } from 'react-chartjs-2';
 import { parseISO, format } from 'date-fns';
-import { Container, Holder } from './styles';
+import { Container, Holder, APIList } from './styles';
 import api from '../../services/api';
 
-import SortArray from '../../services/SortArray';
+import SortArray, { DataProps } from '../../services/SortArray';
 
 const App: React.FC = () => {
   const [labels, setLabels] = useState<string[]>([]);
   const [deaths, setDeaths] = useState<number[]>([]);
   const [backgroundData, setBackground] = useState<string[]>([]);
+
+  const [disasterList, setList] = useState<DataProps[]>([]);
 
   const [covidDeaths, setCovidDeaths] = useState(0);
   const [lastUpdate, setLastUpdate] = useState<string>('');
@@ -23,8 +25,9 @@ const App: React.FC = () => {
   };
 
   const setValues = (deaths: number) => {
-    const { labels: labelsAux, deaths: deathsAux } = SortArray(deaths);
+    const { labels: labelsAux, deaths: deathsAux, list } = SortArray(deaths);
 
+    setList(list);
     labelsAux.push('COVID-19');
     deathsAux.push(covidDeaths);
 
@@ -80,6 +83,16 @@ const App: React.FC = () => {
           <br />
           If you can't, use a mask.
         </p>
+        <APIList>
+          {disasterList.map((item) => (
+            <a href={item.source}>
+              <div>
+                <text>{`${item.name} - † ${item.deaths}`}</text>
+              </div>
+            </a>
+          ))}
+        </APIList>
+        <a href="https://lucascassilha.xyz">Lucas Zawadneak - 2020</a>
       </Holder>
     </Container>
   );
