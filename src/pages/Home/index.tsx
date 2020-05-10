@@ -81,7 +81,7 @@ const App: React.FC = () => {
           <br />
           If you can, stay at home,
           <br />
-          If you can't, use a mask.
+          If you can't, wear a mask.
         </p>
         <APIList>
           {disasterList.map((item) => (
