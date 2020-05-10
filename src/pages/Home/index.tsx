@@ -31,6 +31,9 @@ const App: React.FC = () => {
 
     setList(list);
 
+    labelsAux.push('COVID-19');
+    deathsAux.push(covidCasualties);
+
     setLabels(labelsAux);
     setDeaths(deathsAux);
 
